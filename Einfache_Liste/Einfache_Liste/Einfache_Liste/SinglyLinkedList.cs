@@ -1,23 +1,29 @@
-﻿using System;                
-using System.Collections.Generic;
-using Common;
+﻿using Common;
 
 namespace Einfache_Liste;
 
-public class SinglyLinkedList
+public class SinglyLinkedList<T>
 {
-    private Node? _head;
-    public Node? Head => _head;
+    private Node<T>? _head;
+    public Node<T>? Head => _head;
 
-    public void Insert(Person value)
+    // optional: für den Test
+    public Node<T>? GetLastNode()
     {
-        var n = new Node(value) { Next = _head };
+        var cur = _head;
+        if (cur is null) return null;
+        while (cur.Next is not null) cur = cur.Next;
+        return cur;
+    }
+    public void Insert(T value)
+    {
+        var n = new Node<T>(value) { Next = _head };
         _head = n;
     }
 
-    public void InsertAtEnd(Person value)
+    public void InsertAtEnd(T value)
     {
-        var n = new Node(value);
+        var n = new Node<T>(value);
         if (_head is null)
         {
             _head = n;
@@ -29,7 +35,7 @@ public class SinglyLinkedList
         cur.Next = n;
     }
 
-    public Node? Search(Func<Person, bool> predicate)
+    public Node<T>? Search(Func<T, bool> predicate)
     {
         var cur = _head;
         while (cur is not null)
@@ -40,7 +46,7 @@ public class SinglyLinkedList
         return null;
     }
 
-    public IEnumerable<Person> ToEnumerable()
+    public IEnumerable<T> ToEnumerable()
     {
         var cur = _head;
         while (cur is not null)
