@@ -2,7 +2,7 @@
 using Einfache_Liste;
 using System;
 
-var list = new SinglyLinkedList();
+var list = new SinglyLinkedList<Person>();
 
 list.Insert(new Person(new DateTime(2008, 1, 23), "männlich", "Gabriel"));
 list.Insert(new Person(new DateTime(2003, 1, 7), "weiblich", "Magdalena"));
