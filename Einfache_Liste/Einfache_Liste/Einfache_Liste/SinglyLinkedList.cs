@@ -7,7 +7,6 @@ public class SinglyLinkedList<T>
     private Node<T>? _head;
     public Node<T>? Head => _head;
 
-    // optional: für den Test
     public Node<T>? GetLastNode()
     {
         var cur = _head;
