@@ -1,8 +1,5 @@
-using System;
-using System.Linq;
 using Common;
-using Einfache_Liste;
-using NUnit.Framework;
+
 
 namespace Einfache_Liste.Tests
 {
@@ -85,6 +82,43 @@ namespace Einfache_Liste.Tests
             list.Insert("bla");
             var bla =list.GetLastNode();
             Assert.That(bla, Is.Not.Null);
+        }
+
+        [Test]
+        public void InsertBefore_InsertsNewNodeBeforeTarget()
+        {
+            var list = new SinglyLinkedList<string>();
+            list.Insert("3");
+            list.Insert("12");
+            list.InsertAtEnd("5");
+
+            list.InsertBefore("12", "7"); 
+
+            var result = list.ToEnumerable().ToArray();
+            Assert.That(result, Is.EqualTo(new[] { "3", "7", "12", "5" }));
+        }
+
+        [Test]
+        public void InsertAfter_InsertsNewNodeAfterTarget()
+        {
+            var list = new SinglyLinkedList<string>();
+            list.Insert("3");       
+            list.InsertAtEnd("5");  
+
+            list.InsertAfter("3", "4"); 
+            var result = list.ToEnumerable().ToArray();
+            Assert.That(result, Is.EqualTo(new[] { "3", "4", "5" }));
+        }
+        [Test]
+        public void PosOfElement_AlwaysReturnsZero_WhenWhileConditionNeverMet()
+        {
+            var list = new SinglyLinkedList<int>();
+
+            int pos1 = list.PosOfElement(5);
+            int pos2 = list.PosOfElement(0);
+
+            Assert.That(pos1, Is.EqualTo(0));
+            Assert.That(pos2, Is.EqualTo(0));
         }
     }
 }
