@@ -94,23 +94,20 @@ public class SinglyLinkedList<T>
         }
     }
 
-    public int PosOfElement(int element)
+    public int PosOfElement(T element)
     {
-        int number = 0;
+        int index = 0;
 
-        List<int> list = new List<int>();
-       
-        while (list.Count == 11) 
+        var cur = _head;
+
+        while (cur is not null) 
         { 
-            list.Add(number);
-            number++;
+            if(EqualityComparer<T>.Default.Equals(cur.Data, element)) 
+            {
+                return index;
+            }
         }
-
-        if (list.Contains(element))
-        {
-            int leck = list.IndexOf(element);
-            return leck;
-        }
-        return 0;
+        index++;
+        return -1;
     }
 }

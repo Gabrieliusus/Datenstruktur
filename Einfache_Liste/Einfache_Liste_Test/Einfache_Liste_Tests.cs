@@ -110,15 +110,21 @@ namespace Einfache_Liste.Tests
             Assert.That(result, Is.EqualTo(new[] { "3", "4", "5" }));
         }
         [Test]
-        public void PosOfElement_AlwaysReturnsZero_WhenWhileConditionNeverMet()
+        public void PosOfElement_ReturnsCorrectIndex_ForPerson()
         {
-            var list = new SinglyLinkedList<int>();
+            var list = new SinglyLinkedList<Person>();
+            var p1 = new Person(new DateTime(2005, 1, 1), "männlich", "Max");
+            var p2 = new Person(new DateTime(2006, 5, 15), "weiblich", "Mia");
 
-            int pos1 = list.PosOfElement(5);
-            int pos2 = list.PosOfElement(0);
+            list.InsertAtEnd(p1);
+            list.InsertAtEnd(p2);
 
-            Assert.That(pos1, Is.EqualTo(0));
-            Assert.That(pos2, Is.EqualTo(0));
+            int posP1 = list.PosOfElement(p1);
+            int posP2 = list.PosOfElement(p2);
+
+            Assert.That(posP1, Is.EqualTo(0));
+            Assert.That(posP2, Is.EqualTo(1));
         }
+
     }
 }
