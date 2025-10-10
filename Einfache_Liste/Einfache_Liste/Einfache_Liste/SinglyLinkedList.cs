@@ -11,7 +11,7 @@ public class SinglyLinkedList<T>
     {
         var cur = _head;
         if (cur is null) return null;
-        while (cur.Next is not null) cur = cur.Next;
+        while (cur.Next != null) cur = cur.Next;
         return cur;
     }
     public void Insert(T value)
@@ -30,14 +30,14 @@ public class SinglyLinkedList<T>
         }
 
         var cur = _head;
-        while (cur.Next is not null) cur = cur.Next;
+        while (cur.Next != null) cur = cur.Next;
         cur.Next = n;
     }
 
     public Node<T>? Search(Func<T, bool> predicate)
     {
         var cur = _head;
-        while (cur is not null)
+        while (cur != null)
         {
             if (predicate(cur.Data)) return cur;
             cur = cur.Next;
@@ -48,7 +48,7 @@ public class SinglyLinkedList<T>
     public IEnumerable<T> ToEnumerable()
     {
         var cur = _head;
-        while (cur is not null)
+        while (cur != null)
         {
             yield return cur.Data;
             cur = cur.Next;
@@ -66,7 +66,7 @@ public class SinglyLinkedList<T>
         }
 
         var cur = _head;
-        while (cur.Next is not null)
+        while (cur.Next != null)
         {
             if (EqualityComparer<T>.Default.Equals(cur.Next.Data, elementAfter))
             {
@@ -82,32 +82,39 @@ public class SinglyLinkedList<T>
         if (_head is null) return;
 
         var cur = _head;
-        while (cur is not null)
+        while (cur != null)
         {
             if (EqualityComparer<T>.Default.Equals(cur.Data, elementBefore))
             {
-                var n = new Node<T>(elementToInsert) { Next = cur.Next };
-                cur.Next = n;
+                cur.Next = new Node<T>(elementToInsert) { Next = cur.Next }; ;
                 return;
             }
             cur = cur.Next;
         }
     }
 
+
     public int PosOfElement(T element)
     {
-        int index = 0;
+        int index = 0;  
 
         var cur = _head;
 
-        while (cur is not null) 
+        if (element is null)
+        {
+            return -1;
+        }
+
+        while (cur != null) 
         { 
-            if(EqualityComparer<T>.Default.Equals(cur.Data, element)) 
+            if (element.Equals(cur.Data))
             {
                 return index;
             }
+            cur = cur.Next;
+            index++;
         }
-        index++;
+        
         return -1;
     }
 }
