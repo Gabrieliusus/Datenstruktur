@@ -4,7 +4,7 @@ using Common;
 namespace Einfache_Liste.Tests
 {
     [TestFixture]
-    public class SinglyLinkedListTests<T>
+    public class SinglyLinkedListTests
     {
         private static Person P(string name, string g = "männlich", int y = 2003, int m = 1, int d = 1)
             => new Person(new DateTime(y, m, d), g, name);
@@ -126,5 +126,17 @@ namespace Einfache_Liste.Tests
             Assert.That(posP2, Is.EqualTo(1));
         }
 
+        [Test]
+        public void PosOfElement_ReturnsMinusOne_WhenElementIsNull()
+        {
+            var list = new SinglyLinkedList<string>();
+            list.InsertAtEnd("A");
+            list.InsertAtEnd("B");
+            list.InsertAtEnd("C");
+
+            int result = list.PosOfElement(null);
+
+            Assert.That(result, Is.EqualTo(-1));
+        }
     }
 }
