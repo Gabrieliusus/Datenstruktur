@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Einfache_Liste", "Einfache_Liste\Einfache_Liste.csproj", "{689C0A56-C4BD-47CE-A021-37D4A4E8CA87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Einfache_Liste", "Einfache_Liste\Einfache_Liste.csproj", "{689C0A56-C4BD-47CE-A021-37D4A4E8CA87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Einfache_Liste_Test", "Einfache_Liste_Test\Einfache_Liste_Test.csproj", "{D2DA5C90-4CF7-45CF-8A01-D9A84BC9CB49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Einfache_Liste_Test", "Einfache_Liste_Test\Einfache_Liste_Test.csproj", "{D2DA5C90-4CF7-45CF-8A01-D9A84BC9CB49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleLinkedList", "DoubleLinkedList\DoubleLinkedList.csproj", "{760CD45C-5198-4681-BF49-6A80043C8E8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleLinkedListTest", "DoubleLinkedListTest\DoubleLinkedListTest.csproj", "{9EB5C842-343C-4209-AAB6-61771B9D9977}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{D2DA5C90-4CF7-45CF-8A01-D9A84BC9CB49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2DA5C90-4CF7-45CF-8A01-D9A84BC9CB49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2DA5C90-4CF7-45CF-8A01-D9A84BC9CB49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{760CD45C-5198-4681-BF49-6A80043C8E8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{760CD45C-5198-4681-BF49-6A80043C8E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{760CD45C-5198-4681-BF49-6A80043C8E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{760CD45C-5198-4681-BF49-6A80043C8E8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EB5C842-343C-4209-AAB6-61771B9D9977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EB5C842-343C-4209-AAB6-61771B9D9977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EB5C842-343C-4209-AAB6-61771B9D9977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EB5C842-343C-4209-AAB6-61771B9D9977}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
