@@ -93,7 +93,7 @@ public class DoubleLinkedList<T>
             index++;
         }
 
-        return -1;
+        return -1;  
     }
 
 }

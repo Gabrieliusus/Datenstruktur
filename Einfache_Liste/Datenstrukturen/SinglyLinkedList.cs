@@ -1,0 +1,44 @@
+﻿using Einfache_Liste;
+
+/ SinglyLinkedList
+
+using Common;
+
+namespace Einfache_Liste;
+
+public class SinglyLinkedList<T>
+{
+    private Node<T>? _head;
+    public Node<T>? Head => _head;
+
+    public Node<T>? GetLastNode()
+    {
+        var cur = _head;
+        if (cur is null) return null;
+        while (cur.Next != null) cur = cur.Next;
+        return cur;
+    }
+    public void Insert(T value)
+    {
+        var n = new Node<T>(value) { Next = _head };
+        _head = n;
+    }
+
+    public void InsertAtEnd(T value)
+    {
+        var n = new Node<T>(value);
+        if (_head is null)
+        {
+            _head = n;
+            return;
+        }
+
+        var cur = _head;
+        while (cur.Next != null) cur = cur.Next;
+        cur.Next = n;
+    }
+
+    public Node<T>? Search(Func<T, bool> predicate)
+    {
+        var cur = _head;
+        while (cur != null)
