@@ -1,16 +1,30 @@
-﻿
+﻿using System;
 using Common;
-using Einfache_Liste;
-using System;
+using Datenstrukturen;
 
-var list = new SinglyLinkedList<Person>();
+namespace Datenstrukturen
+{
+    internal class Program
+    {
+        static void Main()
+        {
+            Console.WriteLine("=== Einfach verkettete Liste ===");
+            var list = new SinglyLinkedList<string>();
+            list.Insert("B");
+            list.Insert("A");
+            list.InsertAtEnd("C");
+            Console.WriteLine($"Position von B: {list.PosOfElement("B")}");
+            Console.WriteLine($"Position von D (nicht enthalten): {list.PosOfElement("D")}");
 
-list.Insert(new Person(new DateTime(2008, 1, 23), "männlich", "Gabriel"));
-list.Insert(new Person(new DateTime(2003, 1, 7), "weiblich", "Magdalena"));
-list.InsertAtEnd(new Person(new DateTime(2007, 11, 16), "männlich", "Felix"));
+            Console.WriteLine("\n=== Doppelt verkettete Liste ===");
+            var dlist = new DoubleLinkedList<int>();
+            dlist.InsertBefore(default!, 2);
+            dlist.InsertBefore(2, 1);
+            dlist.InsertAfter(2, 3);
 
-var found = list.Search(p => p.Name == "Gabriel");
-Console.WriteLine(found is null ? "Gabriel nicht gefunden" : $"Gefunden: {found.Data}");
-
-foreach (var p in list.ToEnumerable())
-    Console.WriteLine(p);
+            Console.WriteLine($"Head: {dlist.Head?.Data}, Tail: {dlist.Tail?.Data}");
+            Console.WriteLine($"Position von 1: {dlist.PosOfElement(1)}");
+            Console.WriteLine($"Position von 3: {dlist.PosOfElement(3)}");
+        }
+    }
+}

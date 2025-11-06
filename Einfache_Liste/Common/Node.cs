@@ -3,8 +3,13 @@
 public class Node<T>
 {
     public T Data;
-    public Node<T>? Next;   // für einfach & doppelt verkettet
-    public Node<T>? Prev;   // wird von DoubleLinkedList genutzt
+    public Node<T>? Next;
+    public Node<T>? Prev; // für DoubleLinkedList
 
-    public Node(T data) => Data = data;
+    public Node(T data)
+    {
+        Data = data;
+    }
+
+    public override string ToString() => Data?.ToString() ?? "null";
 }
