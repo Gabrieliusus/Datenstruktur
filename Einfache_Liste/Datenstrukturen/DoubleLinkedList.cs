@@ -12,17 +12,64 @@ public class DoubleLinkedList<T>
     public Node<T>? Tail => _tail;
     public int Count { get; private set; }
 
-    // NUR: InsertAfter, InsertBefore, PosOfElement
-
-    // Fügt NACH dem ersten Vorkommen von elementBefore ein.
-    // Sonderfall: Ist die Liste leer, wird elementToInsert als erstes Element angelegt.
-    public void InsertAfter(T elementBefore, T elementToInsert)
+    public void Insert(T value)
     {
-        // leer -> erstes Element anlegen (damit man die Liste ohne Initialize aufbauen kann)
+        var n = new Node<T>(value);
+
         if (_head is null)
         {
-            var n0 = new Node<T>(elementToInsert);
-            _head = _tail = n0;
+            _head = _tail = n;
+        }
+        else
+        {
+            n.Next = _head;
+            _head.Prev = n;
+            _head = n;
+        }
+
+        Count++;
+    }
+
+    public void InsertAtEnd(T value)
+    {
+        var n = new Node<T>(value);
+
+        if (_tail is null)
+        {
+            _head = _tail = n;
+        }
+        else
+        {
+            _tail.Next = n;
+            n.Prev = _tail;
+            _tail = n;
+        }
+
+        Count++;
+    }
+
+    public Node<T>? Search(Func<T, bool> predicate)
+    {
+        var cur = _head;
+
+        while (cur is not null)
+        {
+            if (predicate(cur.Data))
+                return cur;
+
+            cur = cur.Next;
+        }
+
+        return null;
+    }
+
+
+    public void InsertAfter(T elementBefore, T elementToInsert)
+    {
+        if (_head is null)
+        {
+            var n = new Node<T>(elementToInsert);
+            _head = _tail = n;
             Count = 1;
             return;
         }
@@ -52,31 +99,25 @@ public class DoubleLinkedList<T>
 
             cur = cur.Next;
         }
-        // nicht gefunden -> absichtlich nichts tun
     }
 
-    // Fügt VOR dem ersten Vorkommen von elementAfter ein.
-    // Sonderfall: Ist die Liste leer, wird elementToInsert als erstes Element angelegt.
     public void InsertBefore(T elementAfter, T elementToInsert)
     {
-        // leer -> erstes Element anlegen
         if (_head is null)
         {
-            var n0 = new Node<T>(elementToInsert);
-            _head = _tail = n0;
+            var n = new Node<T>(elementToInsert);
+            _head = _tail = n;
             Count = 1;
             return;
         }
 
         var cmp = EqualityComparer<T>.Default;
 
-        // vor Head einfügen
         if (cmp.Equals(_head.Data, elementAfter))
         {
             var n = new Node<T>(elementToInsert)
             {
-                Next = _head,
-                Prev = null
+                Next = _head
             };
             _head.Prev = n;
             _head = n;
@@ -84,7 +125,6 @@ public class DoubleLinkedList<T>
             return;
         }
 
-        // in der Mitte
         var cur = _head.Next;
         while (cur is not null)
         {
@@ -104,10 +144,8 @@ public class DoubleLinkedList<T>
 
             cur = cur.Next;
         }
-        // nicht gefunden -> absichtlich nichts tun
     }
 
-    // Liefert den 0-basierten Index des ersten Vorkommens oder -1, wenn nicht gefunden
     public int PosOfElement(T element)
     {
         var cmp = EqualityComparer<T>.Default;
@@ -126,4 +164,3 @@ public class DoubleLinkedList<T>
         return -1;
     }
 }
-
