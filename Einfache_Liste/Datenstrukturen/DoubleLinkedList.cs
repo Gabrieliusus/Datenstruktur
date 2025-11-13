@@ -161,7 +161,6 @@ public class DoubleLinkedList<T>
             {
                 if (comparer.Compare(current.Data, current.Next.Data) > 0)
                 {
-                    // Werte tauschen
                     (current.Data, current.Next.Data) = (current.Next.Data, current.Data);
                     swapped = true;
                 }
