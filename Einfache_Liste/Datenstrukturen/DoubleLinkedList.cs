@@ -146,6 +146,40 @@ public class DoubleLinkedList<T>
         }
     }
 
+    public void BubbleSort(IComparer<T>? comparer = null)
+    {
+        if (_head is null) return;
+        comparer ??= Comparer<T>.Default;
+
+        bool swapped;
+        do
+        {
+            swapped = false;
+            var current = _head;
+
+            while (current?.Next is not null)
+            {
+                if (comparer.Compare(current.Data, current.Next.Data) > 0)
+                {
+                    (current.Data, current.Next.Data) = (current.Next.Data, current.Data);
+                    swapped = true;
+                }
+
+                current = current.Next;
+            }
+
+        } while (swapped);
+    }
+    public IEnumerable<T> ToEnumerable()
+    {
+        var cur = _head;
+        while (cur is not null)
+        {
+            yield return cur.Data;
+            cur = cur.Next;
+        }
+    }
+
     public int PosOfElement(T element)
     {
         var cmp = EqualityComparer<T>.Default;

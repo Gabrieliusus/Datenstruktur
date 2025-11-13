@@ -31,4 +31,18 @@ public class DoubleLinkedListTests
         Assert.That(list.PosOfElement("B"), Is.EqualTo(1));
         Assert.That(list.PosOfElement("C"), Is.EqualTo(2));
     }
+
+    [Test]
+    public void BubbleSort_SortsIntegerListAscending()
+    {
+        var list = new DoubleLinkedList<int>();
+        list.InsertBefore(0, 3);
+        list.InsertAfter(3, 1);
+        list.InsertAfter(1, 2);
+
+        list.BubbleSort();
+
+        var result = list.ToEnumerable().ToArray();
+        Assert.That(result, Is.EqualTo(new[] { 1, 2, 3 }));
+    }
 }
